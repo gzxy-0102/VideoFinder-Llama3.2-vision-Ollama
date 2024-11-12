@@ -100,7 +100,7 @@ VideoFinder 是一个智能视频分析工具，利用多模态AI模型来检测
 - 安装了 Llama Vision 模型的 Ollama
 - OpenCV
 
-### 安装步骤
+### 源码安装步骤
 
 1. 克隆仓库
 ```bash
@@ -113,17 +113,28 @@ cd VideoFinder
 pip install -r requirements.txt
 ```
 
-3. 确保 Ollama 已运行并加载 Llama Vision 模型
-```bash
-ollama run llama3.2-vision
-```
-
-4. 启动应用
+3. 启动应用
 ```bash
 python main.py
 ```
 
-5. 访问 `http://localhost:8000` 打开 Web 界面
+4. 访问 `http://localhost:8000` 打开 Web 界面
+
+### Docker安装步骤
+1. 编译镜像
+```bash
+docker build video_finder-llama3.2-vision-ollama:latest .
+```
+2. 启动镜像
+```bash
+docker run -d --name VideoFinder-LLama3.2-vision-Ollama -it -p 8000:8000 -v {UPLOAD_DIR}:/app/uploads -v {FRAMES_DIR}:/app/frames -e OLLAMA_HOST="http://{ip}:{port}" video_finder-llama3.2-vision-ollama:latest
+```
+3. 访问 `http://localhost:8000` 打开 Web 界面
+
+### 确保 Ollama 已运行并加载 Llama Vision 模型
+```bash
+ollama run llama3.2-vision
+```
 
 ## 🛠️ 使用方法
 1. 打开 Web 界面
